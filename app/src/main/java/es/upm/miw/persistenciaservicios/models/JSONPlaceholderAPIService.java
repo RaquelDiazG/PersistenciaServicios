@@ -1,8 +1,7 @@
-package es.upm.miw.persistenciaservicios;
+package es.upm.miw.persistenciaservicios.models;
 
 import java.util.List;
 
-import es.upm.miw.persistenciaservicios.models.Post;
 import retrofit.Call;
 import retrofit.http.GET;
 import retrofit.http.Path;
