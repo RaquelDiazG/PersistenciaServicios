@@ -22,10 +22,10 @@ PATCH	/posts/1
 DELETE	/posts/1
      */
     @GET("/posts")
-    Call<List<Post>> getPosts();
+    Call<List<Post>> getAllPosts();
 
     @GET("/posts/{id}")
-    Call<Post> getPostById(@Path("id") String id);
+    Call<Post> getPostById(@Path("id") Integer id);
 
     @POST("/posts")
     Call<Post> addPost(@Body Post post);

@@ -1,16 +1,14 @@
 package es.upm.miw.persistenciaservicios;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -34,6 +32,7 @@ public class PostsActivity extends AppCompatActivity {
     private ArrayAdapter<Post> adapter;
     private ListView listPosts;
     private List<Post> listCall;
+    EditText editTextId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +40,8 @@ public class PostsActivity extends AppCompatActivity {
         setContentView(R.layout.layout_posts_activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        editTextId=(EditText)findViewById(R.id.editTextFind);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -66,8 +67,7 @@ public class PostsActivity extends AppCompatActivity {
 
         JSONPlaceholderAPIService apiService = retrofit.create(JSONPlaceholderAPIService.class);
 
-        //Call<Post> call_async = apiService.getGroupById(19);
-        Call<List<Post>> call_async = apiService.getPosts();
+        Call<List<Post>> call_async = apiService.getAllPosts();
 
         // Asíncrona
         call_async.enqueue(new Callback<List<Post>>() {
@@ -93,4 +93,42 @@ public class PostsActivity extends AppCompatActivity {
         });
     }
 
+    public void findPostById(View view){
+        //Ocultar teclado
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(editTextId.getWindowToken(), 0);
+        //Get id
+        int id=Integer.parseInt(editTextId.getText().toString());
+        Log.d("id",String.valueOf(id));
+
+        //Call REST
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API_BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JSONPlaceholderAPIService apiService = retrofit.create(JSONPlaceholderAPIService.class);
+
+        Call<Post> call_async = apiService.getPostById(id);
+
+        // Asíncrona
+        call_async.enqueue(new Callback<Post>() {
+            @Override
+            public void onResponse(Response<Post> response, Retrofit retrofit) {
+                // recupero el post obtenido
+                Post post = response.body();
+                adapter.clear();
+                ArrayList<Post> newList=new ArrayList<Post>();
+                newList.add(post);
+                adapter.addAll(newList);
+                listPosts.setAdapter(adapter);
+                Log.i(LOG_TAG, "ASYNC => " + post.toString());
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.e(LOG_TAG, t.getMessage());
+            }
+        });
+    }
 }
