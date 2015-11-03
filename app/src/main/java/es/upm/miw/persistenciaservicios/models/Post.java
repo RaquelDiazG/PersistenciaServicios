@@ -21,6 +21,13 @@ public class Post {
     @Expose
     private String body;
 
+    public Post(Integer id,Integer userId,  String title, String body) {
+        this.userId = userId;
+        this.id = id;
+        this.title = title;
+        this.body = body;
+    }
+
     /**
      * @return The userId
      */
