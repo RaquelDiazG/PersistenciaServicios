@@ -7,12 +7,24 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import es.upm.miw.persistenciaservicios.models.JSONPlaceholderAPIService;
 import es.upm.miw.persistenciaservicios.models.Post;
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class PostActivity extends AppCompatActivity {
 
     TextView tvId, tvUserId, tvTitle, tvBody;
     Context contexto;
+    Post post;
+    static String API_BASE_URL = "http://jsonplaceholder.typicode.com";
+
+    static String LOG_TAG = "JSONPlaceholder";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +34,7 @@ public class PostActivity extends AppCompatActivity {
         contexto = getApplicationContext();
 
         // Recuperar post
-        Post post = getIntent().getParcelableExtra("SHOW_POST");
+        post = getIntent().getParcelableExtra("SHOW_POST");
         Log.i("MOSTRAR", post.toString());
 
         // Identificar vistas
@@ -38,11 +50,4 @@ public class PostActivity extends AppCompatActivity {
         tvBody.setText(post.getBody());
     }
 
-    public void favoritePost(View view) {
-
-    }
-
-    public void deletePost(View view) {
-
-    }
 }

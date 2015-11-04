@@ -4,6 +4,7 @@ import java.util.List;
 
 import retrofit.Call;
 import retrofit.http.Body;
+import retrofit.http.DELETE;
 import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.Path;
@@ -29,5 +30,8 @@ DELETE	/posts/1
 
     @POST("/posts")
     Call<Post> addPost(@Body Post post);
+
+    @DELETE("/posts/{id}")
+    Call<Post> deletePost(@Path("id") Integer id);
 
 }

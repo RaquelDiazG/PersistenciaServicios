@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,7 +100,7 @@ public class PostsActivity extends AppCompatActivity {
         imm.hideSoftInputFromWindow(editTextId.getWindowToken(), 0);
         //Get id
         int id=Integer.parseInt(editTextId.getText().toString());
-        Log.d("id",String.valueOf(id));
+        Log.d("id", String.valueOf(id));
 
         //Call REST
         Retrofit retrofit = new Retrofit.Builder()
