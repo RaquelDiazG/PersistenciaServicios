@@ -13,6 +13,7 @@ import java.util.List;
 
 import es.upm.miw.persistenciaservicios.models.JSONPlaceholderAPIService;
 import es.upm.miw.persistenciaservicios.models.Post;
+import es.upm.miw.persistenciaservicios.models.PostRepository;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.GsonConverterFactory;
@@ -100,7 +101,16 @@ public class PostAdapter extends ArrayAdapter<Post> {
         });
 
         Button btnFavorite = (Button) convertView.findViewById(R.id.btnFavorite);
-
+        btnFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(LOG_TAG, "ID favorite => " + post);
+                //Add to BBDD
+                PostRepository repository=new PostRepository(context);
+                repository.add(post);
+                Log.i(LOG_TAG, "all posts => " + repository.getAll().toString());
+            }
+        });
         return convertView;
         //return null;
     }
