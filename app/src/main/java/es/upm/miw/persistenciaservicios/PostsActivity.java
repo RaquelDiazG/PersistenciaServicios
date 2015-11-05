@@ -80,7 +80,7 @@ public class PostsActivity extends AppCompatActivity {
                     adapter.addAll(listCall);
                     adapter.setNotifyOnChange(true);
                     //Notificacion
-                    Toast.makeText(getApplicationContext(), "Get all posts", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Recuperados todos los posts", Toast.LENGTH_LONG).show();
                 } else {
                     Log.d("ERROR Get all posts =>", response.errorBody().toString());
                     //Notificacion
@@ -92,7 +92,7 @@ public class PostsActivity extends AppCompatActivity {
             public void onFailure(Throwable t) {
                 Log.d("FAIL Get all posts =>", t.getMessage());
                 //Notificacion
-                Toast.makeText(getApplicationContext(), "Error get all posts", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Error get all posst", Toast.LENGTH_LONG).show();
             }
         });
     }
