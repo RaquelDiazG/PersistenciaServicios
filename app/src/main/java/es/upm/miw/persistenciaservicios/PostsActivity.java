@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,14 +79,20 @@ public class PostsActivity extends AppCompatActivity {
                     //Actualizar adapter
                     adapter.addAll(listCall);
                     adapter.setNotifyOnChange(true);
+                    //Notificacion
+                    Toast.makeText(getApplicationContext(), "Get all posts", Toast.LENGTH_LONG).show();
                 } else {
                     Log.d("ERROR Get all posts =>", response.errorBody().toString());
+                    //Notificacion
+                    Toast.makeText(getApplicationContext(), "Error get all posts", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
                 Log.d("FAIL Get all posts =>", t.getMessage());
+                //Notificacion
+                Toast.makeText(getApplicationContext(), "Error get all posts", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -121,14 +128,20 @@ public class PostsActivity extends AppCompatActivity {
                     newList.add(post);
                     adapter.addAll(newList);
                     listPosts.setAdapter(adapter);
+                    //Notificacion
+                    Toast.makeText(getApplicationContext(), "Get selected post", Toast.LENGTH_LONG).show();
                 } else {
                     Log.d("ERROR Get all posts =>", response.errorBody().toString());
+                    //Notificacion
+                    Toast.makeText(getApplicationContext(), "Error get selected post", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
                 Log.d("FAIL Get all posts =>", t.getMessage());
+                //Notificacion
+                Toast.makeText(getApplicationContext(), "Error get selected post", Toast.LENGTH_LONG).show();
             }
         });
     }

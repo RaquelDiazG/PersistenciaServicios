@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -16,13 +17,14 @@ public class FavoritesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_posts_activity);
-        ;
-        //Get favorite post from BBDD
+        //Obtener los posts favoritos de BBDD
         PostRepository repository = new PostRepository(this);
         List<Post> listPost = repository.getAll();
-        //Create adapter and set data
+        //Crear adapter y añadir datos
         ArrayAdapter<Post> adapter = new PostAdapter(this, listPost);
         ListView listPosts = (ListView) findViewById(R.id.listPosts);
         listPosts.setAdapter(adapter);
+        //Notificacion
+        Toast.makeText(getApplicationContext(), "Get all favorites", Toast.LENGTH_LONG).show();
     }
 }

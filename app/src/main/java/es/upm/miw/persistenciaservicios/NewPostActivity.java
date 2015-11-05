@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import es.upm.miw.persistenciaservicios.models.APIutils;
 import es.upm.miw.persistenciaservicios.models.JSONPlaceholderAPIService;
@@ -59,14 +60,20 @@ public class NewPostActivity extends AppCompatActivity {
                     //Redirección
                     Intent intent = new Intent(NewPostActivity.this, PostsActivity.class);
                     startActivity(intent);
+                    //Notificacion
+                    Toast.makeText(getApplicationContext(), "Added post", Toast.LENGTH_LONG).show();
                 } else {
                     Log.d("ERROR Add post =>", response.errorBody().toString());
+                    //Notificacion
+                    Toast.makeText(getApplicationContext(), "Error adding post", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
                 Log.e("FAIL add post =>", t.getMessage());
+                //Notificacion
+                Toast.makeText(getApplicationContext(), "Error adding post", Toast.LENGTH_LONG).show();
             }
         });
     }

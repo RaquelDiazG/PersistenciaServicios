@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -86,14 +87,20 @@ public class PostAdapter extends ArrayAdapter<Post> {
                             //Recuperar el post eliminado
                             Post post = response.body();
                             Log.d("OK Delete post =>", post.toString());
+                            //Notificacion
+                            Toast.makeText(context, "Post removed", Toast.LENGTH_LONG).show();
                         } else {
                             Log.d("ERROR Delete post =>", response.errorBody().toString());
+                            //Notificacion
+                            Toast.makeText(context, "Error removing post", Toast.LENGTH_LONG).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Throwable t) {
                         Log.e("FAIL Delete post =>", t.getMessage());
+                        //Notificacion
+                        Toast.makeText(context, "Error removing post", Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -107,7 +114,13 @@ public class PostAdapter extends ArrayAdapter<Post> {
                 Log.i("Post favorite => ", post.toString());
                 //Insertar post en la BBDD de favoritos
                 PostRepository repository = new PostRepository(context);
-                repository.add(post);
+                long ok = repository.add(post);
+                //Notificacion
+                if (ok == -1) {
+                    Toast.makeText(context, "Error adding post to favorites", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(context, "Post added to favorites", Toast.LENGTH_LONG).show();
+                }
             }
         });
         return convertView;
