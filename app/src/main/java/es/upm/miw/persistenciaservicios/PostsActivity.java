@@ -16,6 +16,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.upm.miw.persistenciaservicios.models.APIutils;
 import es.upm.miw.persistenciaservicios.models.JSONPlaceholderAPIService;
 import es.upm.miw.persistenciaservicios.models.Post;
 import retrofit.Call;
@@ -26,9 +27,6 @@ import retrofit.Retrofit;
 
 public class PostsActivity extends AppCompatActivity {
 
-    static String API_BASE_URL = "http://jsonplaceholder.typicode.com";
-
-    static String LOG_TAG = "JSONPlaceholder";
     private ArrayAdapter<Post> adapter;
     private ListView listPosts;
     private List<Post> listCall;
@@ -62,7 +60,7 @@ public class PostsActivity extends AppCompatActivity {
 
         //Llamada asíncrona REST API
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_BASE_URL)
+                .baseUrl(APIutils.getInstance().getAPI_BASE_URL())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -101,9 +99,9 @@ public class PostsActivity extends AppCompatActivity {
         int id = Integer.parseInt(editTextId.getText().toString());
         Log.d("id", String.valueOf(id));
 
-        //Call REST
+        //Llamada asíncrona REST API
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_BASE_URL)
+                .baseUrl(APIutils.getInstance().getAPI_BASE_URL())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -111,23 +109,26 @@ public class PostsActivity extends AppCompatActivity {
 
         Call<Post> call_async = apiService.getPostById(id);
 
-        // Asíncrona
         call_async.enqueue(new Callback<Post>() {
             @Override
             public void onResponse(Response<Post> response, Retrofit retrofit) {
-                //Recuperar el post obtenido
-                Post post = response.body();
-                adapter.clear();
-                ArrayList<Post> newList = new ArrayList<Post>();
-                newList.add(post);
-                adapter.addAll(newList);
-                listPosts.setAdapter(adapter);
-                Log.i(LOG_TAG, "ASYNC => " + post.toString());
+                if (response.isSuccess()) {
+                    //Recuperar el post obtenido
+                    Post post = response.body();
+                    //Actualizar el adapter
+                    adapter.clear();
+                    ArrayList<Post> newList = new ArrayList<Post>();
+                    newList.add(post);
+                    adapter.addAll(newList);
+                    listPosts.setAdapter(adapter);
+                } else {
+                    Log.d("ERROR Get all posts =>", response.errorBody().toString());
+                }
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Log.e(LOG_TAG, t.getMessage());
+                Log.d("FAIL Get all posts =>", t.getMessage());
             }
         });
     }

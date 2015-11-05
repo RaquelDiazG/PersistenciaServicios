@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ActividadPrincipal">
     <item
         android:id="@+id/menuFavorites"
-        android:title="Favoritos"
         android:icon="@android:drawable/btn_star_big_on"
         android:orderInCategory="100"
+        android:title="Favoritos"
         app:showAsAction="ifRoom|withText" />
 </menu>

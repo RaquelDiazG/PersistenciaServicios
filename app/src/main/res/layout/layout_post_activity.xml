@@ -6,10 +6,10 @@
     android:orientation="vertical">
 
     <TextView
-        android:text="User id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"/>
+        android:text="User id"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvUserId"
@@ -17,10 +17,10 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:text="Id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"/>
+        android:text="Id"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvId"
@@ -28,10 +28,10 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:text="Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"/>
+        android:text="Title"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvTitle"
@@ -39,10 +39,10 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:text="Body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"/>
+        android:text="Body"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvBody"

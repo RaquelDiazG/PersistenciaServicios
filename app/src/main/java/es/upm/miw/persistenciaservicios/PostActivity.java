@@ -14,10 +14,6 @@ public class PostActivity extends AppCompatActivity {
     private Context contexto;
     private Post post;
 
-    static String API_BASE_URL = "http://jsonplaceholder.typicode.com";
-
-    static String LOG_TAG = "JSONPlaceholder";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

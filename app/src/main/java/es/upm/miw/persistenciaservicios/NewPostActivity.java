@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import es.upm.miw.persistenciaservicios.models.APIutils;
 import es.upm.miw.persistenciaservicios.models.JSONPlaceholderAPIService;
 import es.upm.miw.persistenciaservicios.models.Post;
 import retrofit.Call;
@@ -16,8 +17,6 @@ import retrofit.Response;
 import retrofit.Retrofit;
 
 public class NewPostActivity extends AppCompatActivity {
-
-    static String API_BASE_URL = "http://jsonplaceholder.typicode.com";
 
     private EditText id, userId, title, body;
 
@@ -42,7 +41,7 @@ public class NewPostActivity extends AppCompatActivity {
 
         //Llamada asíncrona REST API
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_BASE_URL)
+                .baseUrl(APIutils.getInstance().getAPI_BASE_URL())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import es.upm.miw.persistenciaservicios.models.APIutils;
 import es.upm.miw.persistenciaservicios.models.JSONPlaceholderAPIService;
 import es.upm.miw.persistenciaservicios.models.Post;
 import es.upm.miw.persistenciaservicios.models.PostRepository;
@@ -25,8 +26,6 @@ public class PostAdapter extends ArrayAdapter<Post> {
     private Context context;
     private List<Post> posts;
     private Post post;
-
-    static String API_BASE_URL = "http://jsonplaceholder.typicode.com";
 
     public PostAdapter(Context context, List<Post> posts) {
         super(context, R.layout.layout_posts_activity, posts);
@@ -72,7 +71,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
                 //Llamada asíncrona REST API
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(API_BASE_URL)
+                        .baseUrl(APIutils.getInstance().getAPI_BASE_URL())
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
