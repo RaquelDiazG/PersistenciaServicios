@@ -24,10 +24,9 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
     private Context context;
     private List<Post> posts;
-    Post post;
-    static String API_BASE_URL = "http://jsonplaceholder.typicode.com";
+    private Post post;
 
-    static String LOG_TAG = "JSONPlaceholder";
+    static String API_BASE_URL = "http://jsonplaceholder.typicode.com";
 
     public PostAdapter(Context context, List<Post> posts) {
         super(context, R.layout.layout_posts_activity, posts);
@@ -48,7 +47,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
         }
 
         //Recuperamos el post sobre el que se ha pulsado
-         post = this.posts.get(position);
+        post = this.posts.get(position);
 
         //Añadimos los datos del post a la vista
         if (post != null) {
@@ -68,9 +67,10 @@ public class PostAdapter extends ArrayAdapter<Post> {
             @Override
             public void onClick(View v) {
                 //Get id
-                int id=post.getId();
-                Log.i(LOG_TAG, "ID delete => " + id);
-                //Call REST
+                int id = post.getId();
+                Log.i("ID to delete => ", String.valueOf(id));
+
+                //Llamada asíncrona REST API
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl(API_BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
@@ -80,20 +80,21 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
                 Call<Post> call_async = apiService.deletePost(id);
 
-                // Asíncrona
                 call_async.enqueue(new Callback<Post>() {
                     @Override
                     public void onResponse(Response<Post> response, Retrofit retrofit) {
-                        // recupero el post obtenido
-                        Post post = response.body();
-
-                        Log.i(LOG_TAG, "ASYNC => " + post.toString());
-
+                        if (response.isSuccess()) {
+                            //Recuperar el post eliminado
+                            Post post = response.body();
+                            Log.d("OK Delete post =>", post.toString());
+                        } else {
+                            Log.d("ERROR Delete post =>", response.errorBody().toString());
+                        }
                     }
 
                     @Override
                     public void onFailure(Throwable t) {
-                        Log.e(LOG_TAG, t.getMessage());
+                        Log.e("FAIL Delete post =>", t.getMessage());
                     }
                 });
 
@@ -104,14 +105,12 @@ public class PostAdapter extends ArrayAdapter<Post> {
         btnFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(LOG_TAG, "ID favorite => " + post);
-                //Add to BBDD
-                PostRepository repository=new PostRepository(context);
+                Log.i("Post favorite => ", post.toString());
+                //Insertar post en la BBDD de favoritos
+                PostRepository repository = new PostRepository(context);
                 repository.add(post);
-                Log.i(LOG_TAG, "all posts => " + repository.getAll().toString());
             }
         });
         return convertView;
-        //return null;
     }
 }

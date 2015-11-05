@@ -10,16 +10,10 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-    static String API_BASE_URL = "http://jsonplaceholder.typicode.com";
-
-    static String LOG_TAG = "JSONPlaceholder";
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_main_activity);
-
     }
 
     @Override
@@ -41,12 +35,12 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void showPosts(View view) {
+    public void showPosts(View view) { //click on posts button (layout)
         Intent intent = new Intent(this, PostsActivity.class);
         startActivity(intent);
     }
 
-    private void showFavorites() {
+    private void showFavorites() { //click on favorites button (menu)
         Intent intent = new Intent(this, FavoritesActivity.class);
         startActivity(intent);
     }

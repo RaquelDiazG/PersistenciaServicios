@@ -12,7 +12,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +32,7 @@ public class PostsActivity extends AppCompatActivity {
     private ArrayAdapter<Post> adapter;
     private ListView listPosts;
     private List<Post> listCall;
-    EditText editTextId;
+    private EditText editTextId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,25 +41,26 @@ public class PostsActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        editTextId=(EditText)findViewById(R.id.editTextFind);
+        //Identificar las vistas
+        editTextId = (EditText) findViewById(R.id.editTextFind);
 
+        //Boton flotante para crear un post
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(PostsActivity.this, NewPostActivity.class);
+                Intent intent = new Intent(PostsActivity.this, NewPostActivity.class);
                 startActivity(intent);
             }
         });
 
-
-        //Create adapter and set data
+        //Crear adapter y añadir datos
         listCall = new ArrayList();
         adapter = new PostAdapter(this, listCall);
         listPosts = (ListView) findViewById(R.id.listPosts);
         listPosts.setAdapter(adapter);
 
-        //Call REST API
+        //Llamada asíncrona REST API
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -70,36 +70,35 @@ public class PostsActivity extends AppCompatActivity {
 
         Call<List<Post>> call_async = apiService.getAllPosts();
 
-        // Asíncrona
         call_async.enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Response<List<Post>> response, Retrofit retrofit) {
-                if (response.isSuccess()) {// tasks available
+                if (response.isSuccess()) {
                     //Get all posts
                     listCall = response.body();
-                    Log.i(LOG_TAG, "ASYNC => " + listCall.toString());
-                    //Set data to adapter
+                    Log.d("OK Get all post =>", listCall.toString());
+                    //Actualizar adapter
                     adapter.addAll(listCall);
                     adapter.setNotifyOnChange(true);
-
-                } else {// error response, no access to resource?
-
+                } else {
+                    Log.d("ERROR Get all posts =>", response.errorBody().toString());
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Log.e(LOG_TAG, t.getMessage());
+                Log.d("FAIL Get all posts =>", t.getMessage());
             }
         });
     }
 
-    public void findPostById(View view){
+    public void findPostById(View view) {
         //Ocultar teclado
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(editTextId.getWindowToken(), 0);
+
         //Get id
-        int id=Integer.parseInt(editTextId.getText().toString());
+        int id = Integer.parseInt(editTextId.getText().toString());
         Log.d("id", String.valueOf(id));
 
         //Call REST
@@ -116,10 +115,10 @@ public class PostsActivity extends AppCompatActivity {
         call_async.enqueue(new Callback<Post>() {
             @Override
             public void onResponse(Response<Post> response, Retrofit retrofit) {
-                // recupero el post obtenido
+                //Recuperar el post obtenido
                 Post post = response.body();
                 adapter.clear();
-                ArrayList<Post> newList=new ArrayList<Post>();
+                ArrayList<Post> newList = new ArrayList<Post>();
                 newList.add(post);
                 adapter.addAll(newList);
                 listPosts.setAdapter(adapter);

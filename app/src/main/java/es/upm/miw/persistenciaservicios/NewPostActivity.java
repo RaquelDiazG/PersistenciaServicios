@@ -1,8 +1,8 @@
 package es.upm.miw.persistenciaservicios;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -19,30 +19,28 @@ public class NewPostActivity extends AppCompatActivity {
 
     static String API_BASE_URL = "http://jsonplaceholder.typicode.com";
 
-    static String LOG_TAG = "JSONPlaceholder";
-
-    EditText id;
-    EditText userId;
-    EditText title;
-    EditText body;
+    private EditText id, userId, title, body;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_new_post_activity);
 
-         id=(EditText)findViewById(R.id.textViewId);
-         userId=(EditText)findViewById(R.id.textViewUserId);
-         title=(EditText)findViewById(R.id.textViewTitle);
-         body=(EditText)findViewById(R.id.textViewBody);
-
+        // Identificar vistas
+        id = (EditText) findViewById(R.id.textViewId);
+        userId = (EditText) findViewById(R.id.textViewUserId);
+        title = (EditText) findViewById(R.id.textViewTitle);
+        body = (EditText) findViewById(R.id.textViewBody);
     }
 
     public void addPost(View view) {
         //Recoger datos del nuevo post
-        Post newPost=new Post(Integer.parseInt(id.getText().toString()),Integer.parseInt(userId.getText().toString()),title.getText().toString(),body.getText().toString());
+        Post newPost = new Post(Integer.parseInt(id.getText().toString()),
+                Integer.parseInt(userId.getText().toString()),
+                title.getText().toString(),
+                body.getText().toString());
 
-        //Call REST API
+        //Llamada asíncrona REST API
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -50,27 +48,26 @@ public class NewPostActivity extends AppCompatActivity {
 
         JSONPlaceholderAPIService apiService = retrofit.create(JSONPlaceholderAPIService.class);
 
-        //Call<Post> call_async = apiService.getGroupById(19);
         Call<Post> call_async = apiService.addPost(newPost);
 
-        // Asíncrona
         call_async.enqueue(new Callback<Post>() {
             @Override
             public void onResponse(Response<Post> response, Retrofit retrofit) {
-                if (response.isSuccess()) {// tasks available
-                    //Get post
+                if (response.isSuccess()) {
+                    //Recuperar el post insertado
                     Post post = response.body();
-                    Log.d(LOG_TAG,post.toString());
-                    Intent intent =new Intent(NewPostActivity.this,PostsActivity.class);
+                    Log.d("OK Add post =>", post.toString());
+                    //Redirección
+                    Intent intent = new Intent(NewPostActivity.this, PostsActivity.class);
                     startActivity(intent);
-                } else {// error response, no access to resource?
-
+                } else {
+                    Log.d("ERROR Add post =>", response.errorBody().toString());
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Log.e(LOG_TAG, t.getMessage());
+                Log.e("FAIL add post =>", t.getMessage());
             }
         });
     }
