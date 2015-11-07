@@ -27,6 +27,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:onClick="showPosts"
-        android:text="Get all posts"/>
+        android:text="Get all posts"
+        android:background="@color/colorAccent"/>
 
 </LinearLayout>

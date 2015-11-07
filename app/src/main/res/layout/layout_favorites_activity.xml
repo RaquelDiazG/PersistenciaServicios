@@ -15,7 +15,8 @@
         android:text="Remove all favorites"
         android:id="@+id/btnRemoveAllFavorites"
         android:layout_gravity="center_horizontal"
-        android:onClick="removeAllFavorites"/>
+        android:onClick="removeAllFavorites"
+        android:background="@color/colorAccent"/>
 
     <ListView
         android:id="@+id/listFavoritesPosts"

@@ -57,6 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="addPost"
-        android:text="Add post" />
+        android:text="Add post"
+        android:background="@color/colorAccent"/>
 
 </LinearLayout>
