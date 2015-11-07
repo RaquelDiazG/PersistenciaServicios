@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -39,6 +40,7 @@ public class PostsActivity extends AppCompatActivity {
         setContentView(R.layout.layout_posts_activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Identificar las vistas
         editTextId = (EditText) findViewById(R.id.editTextFind);
@@ -80,7 +82,7 @@ public class PostsActivity extends AppCompatActivity {
                     adapter.addAll(listCall);
                     adapter.setNotifyOnChange(true);
                     //Notificacion
-                    Toast.makeText(getApplicationContext(), "Recuperados todos los posts", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Get all posts", Toast.LENGTH_LONG).show();
                 } else {
                     Log.d("ERROR Get all posts =>", response.errorBody().toString());
                     //Notificacion
