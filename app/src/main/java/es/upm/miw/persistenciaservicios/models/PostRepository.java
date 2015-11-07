@@ -98,10 +98,16 @@ public class PostRepository extends SQLiteOpenHelper {
         return numero;
     }
 
-    public long deleteAll() {
+    public boolean deleteAll() {
         //Acceder en modo escritura
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(PostTable.TABLE_NAME, "1", null);
+        return db.delete(PostTable.TABLE_NAME, "1", null)!=0;
+    }
+
+    public boolean deletePostByID(int id) {
+        //Acceder en modo escritura
+        SQLiteDatabase db = this.getWritableDatabase();
+       return db.delete(PostTable.TABLE_NAME, PostTable.COL_NAME_ID+"=?", new String[]{Integer.toString(id)})>0;
     }
 
     public Post getPostByID(int id) {
