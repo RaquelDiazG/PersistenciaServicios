@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="es.upm.miw.persistenciaservicios">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -19,13 +18,11 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".PostActivity">
-        </activity>
+        <activity android:name=".PostActivity"></activity>
 
         <activity
-            android:label="All posts"
             android:name=".PostsActivity"
+            android:label="All posts"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -34,18 +31,18 @@
         </activity>
 
         <activity
-            android:label="New post"
             android:name=".NewPostActivity"
-            android:parentActivityName=".PostsActivity" >
+            android:label="New post"
+            android:parentActivityName=".PostsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".PostsActivity" />
         </activity>
 
         <activity
-            android:label="Favorites posts"
             android:name=".FavoritesActivity"
-            android:parentActivityName=".MainActivity" >
+            android:label="Favorites posts"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
