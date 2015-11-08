@@ -45,6 +45,9 @@ public class PostsActivity extends AppCompatActivity {
         //Identificar las vistas
         editTextId = (EditText) findViewById(R.id.editTextFind);
 
+        //Ocultar teclado
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
         //Boton flotante para crear un post
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
