@@ -61,11 +61,11 @@ public class NewPostActivity extends AppCompatActivity {
                     Intent intent = new Intent(NewPostActivity.this, PostsActivity.class);
                     startActivity(intent);
                     //Notificacion
-                    Toast.makeText(getApplicationContext(), "Added post", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.toastOkAddPost, Toast.LENGTH_LONG).show();
                 } else {
                     Log.d("ERROR Add post =>", response.errorBody().toString());
                     //Notificacion
-                    Toast.makeText(getApplicationContext(), "Error adding post", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.toastErrorAddPost, Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -73,7 +73,7 @@ public class NewPostActivity extends AppCompatActivity {
             public void onFailure(Throwable t) {
                 Log.e("FAIL add post =>", t.getMessage());
                 //Notificacion
-                Toast.makeText(getApplicationContext(), "Error adding post", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.toastErrorAddPost, Toast.LENGTH_LONG).show();
             }
         });
     }

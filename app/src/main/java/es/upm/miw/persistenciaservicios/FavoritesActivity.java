@@ -31,7 +31,7 @@ public class FavoritesActivity extends AppCompatActivity {
         ListView listPosts = (ListView) findViewById(R.id.listFavoritesPosts);
         listPosts.setAdapter(adapter);
         //Notificacion
-        Toast.makeText(context, "Get all favorites", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, R.string.toastGetAllFavorites, Toast.LENGTH_LONG).show();
     }
 
     public void removeAllFavorites(View view) { //click en boton
@@ -40,9 +40,9 @@ public class FavoritesActivity extends AppCompatActivity {
         boolean exito= repository.deleteAll();
         //Notificacion
         if(exito) {
-            Toast.makeText(context, "All favorites deleted", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.toastOkDeleteAllFavorites, Toast.LENGTH_LONG).show();
         }else{
-            Toast.makeText(context, "Error deleting all favorites", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.toastErrorDeleteAllFavorites, Toast.LENGTH_LONG).show();
         }
     }
 }

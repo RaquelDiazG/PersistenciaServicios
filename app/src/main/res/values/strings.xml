@@ -16,5 +16,21 @@
     <string name="btnAddFavorite">Add to favorite</string>
     <string name="btnDeleteAllFavorites">Delete all favorites</string>
     <string name="btnDeleteFavorite">Delete favorite</string>
+    <!-- Toast -->
+    <string name="toastOkDeleteFavorite">Favorite deleted</string>
+    <string name="toastErrorDeleteFavorite">Error deleting favorite</string>
+    <string name="toastGetAllFavorites">Get all favorites</string>
+    <string name="toastOkDeleteAllFavorites">All favorites deleted</string>
+    <string name="toastErrorDeleteAllFavorites">Error deleting all favorites</string>
+    <string name="toastOkAddPost">Post added</string>
+    <string name="toastErrorAddPost">Error adding post</string>
+    <string name="toastOkDeletePost">Post deleted</string>
+    <string name="toastErrorDeletePost">Error deleting post</string>
+    <string name="toastOkAddFavorite">Post added to favorites</string>
+    <string name="toastErrorAddFavorite">Error adding post to favorites</string>
+    <string name="toastOkGetSelectedPost">Get selected post</string>
+    <string name="toastErrorGetSelectedPost">Error get selected post</string>
+    <string name="toastOkGetAllPosts">Get all posts</string>
+    <string name="toastErrorGetAllPosts">Error get all posts</string>
 
 </resources>

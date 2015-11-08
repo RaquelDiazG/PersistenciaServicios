@@ -88,11 +88,11 @@ public class PostAdapter extends ArrayAdapter<Post> {
                             Post post = response.body();
                             Log.d("OK Delete post =>", post.toString());
                             //Notificacion
-                            Toast.makeText(context, "Post removed", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, R.string.toastOkDeletePost, Toast.LENGTH_LONG).show();
                         } else {
                             Log.d("ERROR Delete post =>", response.errorBody().toString());
                             //Notificacion
-                            Toast.makeText(context, "Error removing post", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, R.string.toastErrorDeletePost, Toast.LENGTH_LONG).show();
                         }
                     }
 
@@ -100,7 +100,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
                     public void onFailure(Throwable t) {
                         Log.e("FAIL Delete post =>", t.getMessage());
                         //Notificacion
-                        Toast.makeText(context, "Error removing post", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, R.string.toastErrorDeletePost, Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -117,9 +117,9 @@ public class PostAdapter extends ArrayAdapter<Post> {
                 long ok = repository.add(post);
                 //Notificacion
                 if (ok == -1) {
-                    Toast.makeText(context, "Error adding post to favorites", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, R.string.toastErrorAddFavorite, Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(context, "Post added to favorites", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, R.string.toastOkAddFavorite, Toast.LENGTH_LONG).show();
                 }
             }
         });

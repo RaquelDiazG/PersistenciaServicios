@@ -59,7 +59,7 @@ public class PostsActivity extends AppCompatActivity {
         });
 
         //Crear adapter y añadir datos
-        listCall = new ArrayList();
+        listCall = new ArrayList<>();
         adapter = new PostAdapter(this, listCall);
         listPosts = (ListView) findViewById(R.id.listPosts);
         listPosts.setAdapter(adapter);
@@ -85,11 +85,11 @@ public class PostsActivity extends AppCompatActivity {
                     adapter.addAll(listCall);
                     adapter.setNotifyOnChange(true);
                     //Notificacion
-                    Toast.makeText(getApplicationContext(), "Get all posts", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.toastOkGetAllPosts, Toast.LENGTH_LONG).show();
                 } else {
                     Log.d("ERROR Get all posts =>", response.errorBody().toString());
                     //Notificacion
-                    Toast.makeText(getApplicationContext(), "Error get all posts", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.toastErrorGetAllPosts, Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -97,7 +97,7 @@ public class PostsActivity extends AppCompatActivity {
             public void onFailure(Throwable t) {
                 Log.d("FAIL Get all posts =>", t.getMessage());
                 //Notificacion
-                Toast.makeText(getApplicationContext(), "Error get all posst", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.toastErrorGetAllPosts, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -129,16 +129,16 @@ public class PostsActivity extends AppCompatActivity {
                     Post post = response.body();
                     //Actualizar el adapter
                     adapter.clear();
-                    ArrayList<Post> newList = new ArrayList<Post>();
+                    ArrayList<Post> newList = new ArrayList<>();
                     newList.add(post);
                     adapter.addAll(newList);
                     listPosts.setAdapter(adapter);
                     //Notificacion
-                    Toast.makeText(getApplicationContext(), "Get selected post", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.toastOkGetSelectedPost, Toast.LENGTH_LONG).show();
                 } else {
                     Log.d("ERROR Get all posts =>", response.errorBody().toString());
                     //Notificacion
-                    Toast.makeText(getApplicationContext(), "Error get selected post", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.toastErrorGetSelectedPost, Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -146,7 +146,7 @@ public class PostsActivity extends AppCompatActivity {
             public void onFailure(Throwable t) {
                 Log.d("FAIL Get all posts =>", t.getMessage());
                 //Notificacion
-                Toast.makeText(getApplicationContext(), "Error get selected post", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),R.string.toastErrorGetSelectedPost, Toast.LENGTH_LONG).show();
             }
         });
     }

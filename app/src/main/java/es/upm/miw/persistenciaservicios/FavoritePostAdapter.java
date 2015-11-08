@@ -7,21 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
 
-import es.upm.miw.persistenciaservicios.models.APIutils;
-import es.upm.miw.persistenciaservicios.models.JSONPlaceholderAPIService;
 import es.upm.miw.persistenciaservicios.models.Post;
 import es.upm.miw.persistenciaservicios.models.PostRepository;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
 
 public class FavoritePostAdapter extends ArrayAdapter<Post> {
 
@@ -75,9 +67,9 @@ public class FavoritePostAdapter extends ArrayAdapter<Post> {
                boolean exito= repository.deletePostByID(id);
                 //Notificacion
                 if(exito) {
-                    Toast.makeText(context, "Favorite delete", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, R.string.toastOkDeleteFavorite, Toast.LENGTH_LONG).show();
                 }else{
-                    Toast.makeText(context, "Error deleting favorite", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, R.string.toastErrorDeleteFavorite, Toast.LENGTH_LONG).show();
                 }
 
             }
