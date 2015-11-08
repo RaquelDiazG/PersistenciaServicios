@@ -16,18 +16,18 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:text="JSONPlaceholder is a simple fake REST API for testing and prototyping.\r\n\r\nIt's like an image placeholder but for web developers.\r\n\r\nIt's powered by JSON Server.\r\n\r\nIt's provides the usual suspects: Posts, Comments, Albums, Photos, Users and Todos" />
+        android:text="@string/txtInfo" />
 
     <Space
         android:layout_width="fill_parent"
-        android:layout_height="100px" />
+        android:layout_height="80dp" />
 
     <Button
         android:id="@+id/btnPosts"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:onClick="showPosts"
-        android:text="Get all posts"
+        android:text="@string/btnGetAllPosts"
         android:background="@color/colorAccent"/>
 
 </LinearLayout>

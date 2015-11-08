@@ -3,13 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    android:layout_weight="3"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="User id"
+        android:text="@string/txtUserId"
         android:textStyle="bold" />
 
     <TextView
@@ -20,7 +19,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Id"
+        android:text="@string/txtId"
         android:textStyle="bold" />
 
     <TextView
@@ -31,7 +30,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Title"
+        android:text="@string/txtTitle"
         android:textStyle="bold" />
 
     <TextView
@@ -42,7 +41,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Body"
+        android:text="@string/txtBody"
         android:textStyle="bold" />
 
     <TextView
@@ -51,13 +50,13 @@
         android:layout_height="wrap_content" />
 
 
-        <Button
-            android:id="@+id/btnDeleteFavorite"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Delete favorite"
-            android:background="@color/colorPrimary"
-            android:textColor="#FFFFFF"/>
+    <Button
+        android:id="@+id/btnDeleteFavorite"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/colorPrimary"
+        android:text="@string/btnDeleteFavorite"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>

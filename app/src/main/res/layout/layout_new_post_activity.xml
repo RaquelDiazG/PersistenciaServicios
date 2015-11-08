@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Id" />
+        android:text="@string/txtId" />
 
     <EditText
         android:id="@+id/textViewId"
@@ -24,7 +24,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="UserId" />
+        android:text="@string/txtUserId" />
 
     <EditText
         android:id="@+id/textViewUserId"
@@ -35,7 +35,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Title" />
+        android:text="@string/txtTitle" />
 
     <EditText
         android:id="@+id/textViewTitle"
@@ -45,7 +45,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Body" />
+        android:text="@string/txtBody" />
 
     <EditText
         android:id="@+id/textViewBody"
@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="addPost"
-        android:text="Add post"
+        android:text="@string/btnAddPost"
         android:background="@color/colorAccent"/>
 
 </LinearLayout>

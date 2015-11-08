@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    android:layout_weight="3"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="User id"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:text="@string/txtUserId"/>
 
     <TextView
         android:id="@+id/tvUserId"
@@ -19,8 +19,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Id"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:text="@string/txtId" />
 
     <TextView
         android:id="@+id/tvId"
@@ -30,8 +30,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Title"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:text="@string/txtTitle" />
 
     <TextView
         android:id="@+id/tvTitle"
@@ -41,8 +41,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Body"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:text="@string/txtBody" />
 
     <TextView
         android:id="@+id/tvBody"
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:text="Add to favorite"
+            android:text="@string/btnAddFavorite"
             android:background="@color/colorPrimary"
             android:textColor="#FFFFFF"/>
 
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:text="Delete"
+            android:text="@string/btnDeletePost"
             android:background="@color/colorPrimary"
             android:textColor="#FFFFFF"/>
     </LinearLayout>

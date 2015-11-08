@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">API-BBDD</string>
+    <!-- Info Post -->
+    <string name="txtId">Id</string>
+    <string name="txtUserId">UserId</string>
+    <string name="txtTitle">Title</string>
+    <string name="txtBody">Body</string>
+    <!-- Main -->
+    <string name="txtInfo">JSONPlaceholder is a simple fake REST API for testing and prototyping.\n\nIt\'s like an image placeholder but for web developers.\n\nIt\'s powered by JSON Server.\n\nIt\'s provides the usual suspects: Posts, Comments, Albums, Photos, Users and Todos</string>
+    <string name="btnGetAllPosts">Get all posts</string>
+    <!-- Posts -->
+    <string name="btnAddPost">Add post</string>
+    <string name="btnDeletePost">Delete post</string>
+    <string name="btnFindPostById">Find post by id</string>
+    <!-- Favorite -->
+    <string name="btnAddFavorite">Add to favorite</string>
+    <string name="btnDeleteAllFavorites">Delete all favorites</string>
+    <string name="btnDeleteFavorite">Delete favorite</string>
+
 </resources>
